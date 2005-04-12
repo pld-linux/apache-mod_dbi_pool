@@ -14,12 +14,13 @@ URL:		http://www.outoforder.cc/projects/apache/mod_dbi_pool/
 BuildRequires:	%{apxs}
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	apache-devel
-BuildRequires:	libdbi-devel
+BuildRequires:	apache-devel >= 2.0.40
+BuildRequires:	libdbi-devel >= 0.7.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires(post,preun):	%{apxs}
-Requires:	apache
+Requires:	apache >= 2.0.40
+Requires:	libdbi >= 0.7.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
@@ -41,7 +42,7 @@ SQLite.
 Summary:	Header files for mod_dbi_pool API
 Summary(pl):	Pliki nag³ówkowe dla API mod_dbi_pool
 Group:		Development/Libraries
-Requires:	apache-devel = %{version}-%{release}
+Requires:	apache-devel = %{version}-%{release} >= 2.0.40
 
 %description devel
 Header files for mod_dbi_pool API.
