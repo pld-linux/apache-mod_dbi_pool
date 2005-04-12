@@ -1,8 +1,8 @@
 
 %define		mod_name	dbi_pool
 %define 	apxs		/usr/sbin/apxs
-Summary:	mod_dbi_pool
-Summary(pl):	mod_dbi_pool
+Summary:	mod_dbi_pool - Pool Database connections between modules and requests
+Summary(pl):	mod_dbi_pool - po³±czenia bazowanowe miêdzy modu³ami i ¿±daniami
 Name:		apache-mod_%{mod_name}
 Version:	0.4.0
 Release:	1
@@ -10,6 +10,7 @@ License:	GPL
 Group:		Networking/Daemons
 Source0:	http://www.outoforder.cc/downloads/mod_dbi_pool/mod_%{mod_name}-%{version}.tar.bz2
 # Source0-md5:	7fd42e90358b370eafdddf1f7252a65e
+URL:		http://www.outoforder.cc/projects/apache/mod_dbi_pool/
 BuildRequires:	%{apxs}
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -24,13 +25,29 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
 
 %description
+mod_dbi_pool provides database connection pooling services for other
+Apache Modules. Using libdbi it allows other modules to have a dynamic
+pool of database connections for many common SQL Servers, including
+mSQL, MySQL, PostgreSQL, Oracle and SQLite.
+
+%description -l pl
+mod_dbi_pool dostarcza us³ugi utrzymywania puli po³±czeñ z baz± danych
+dla innych modu³ów Apache'a. Poprzez u¿ycie libdbi umo¿liwia innym
+modu³om posiadanie dynamicznej puli po³±czeñ z baz± danych dla wielu
+popularnych serwerów SQL, w tym mSQL, MySQL, PostgreSQL, Oracle i
+SQLite.
 
 %package devel
-Summary:	mod_vhost_dbi
+Summary:	Header files for mod_dbi_pool API
+Summary(pl):	Pliki nag³ówkowe dla API mod_dbi_pool
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	apache-devel = %{version}-%{release}
 
 %description devel
+Header files for mod_dbi_pool API.
+
+%description devel -l pl
+Pliki nag³ówkowe dla API mod_dbi_pool.
 
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
