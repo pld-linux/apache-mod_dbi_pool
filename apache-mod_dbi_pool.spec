@@ -25,7 +25,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 
-%description -l pl
+%package devel
+Summary:	mod_vhost_dbi
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description devel
 
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
@@ -42,9 +47,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_includedir}/apache}
 
 install src/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
+
+install include/mod_dbi_pool.h $RPM_BUILD_ROOT%{_includedir}/apache
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -66,3 +73,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_pkglibdir}/*.so
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/apache/*.h
