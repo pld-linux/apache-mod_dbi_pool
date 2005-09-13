@@ -24,7 +24,8 @@ Requires:	apache >= 2.0.40
 Requires:	libdbi >= 0.7.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
 
 %description
 mod_dbi_pool provides database connection pooling services for other
@@ -69,24 +70,26 @@ sed -i -e 's,test_paths="/usr/lib /usr/local/lib",test_paths="/usr/%{_lib} /usr/
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_includedir}/apache}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_includedir}/apache,%{_sysconfdir}/httpd.conf}
 
 install src/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
 install include/mod_dbi_pool.h $RPM_BUILD_ROOT%{_includedir}/apache
+cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_%{mod_name}.conf
+LoadModule %{mod_name}_module        modules/%{mod_name}.so
+# vim: filetype=apache ts=4 sw=4 et
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{apxs} -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	%{apxs} -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
@@ -94,6 +97,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
 
 %files devel
