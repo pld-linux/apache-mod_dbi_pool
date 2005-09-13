@@ -60,7 +60,7 @@ Pliki nag³ówkowe dla API mod_dbi_pool.
 %{__autoconf}
 %{__automake}
 
-sed -i -e 's/test_paths="\/usr\/lib \/usr\/local\/lib"/test_paths="\/usr\/lib64 \/usr\/lib \/usr\/local\/lib"/g' configure
+sed -i -e 's,test_paths="/usr/lib /usr/local/lib",test_paths="/usr/%{_lib} /usr/lib",g' configure
 
 %configure \
         --with-apxs=%{apxs}
