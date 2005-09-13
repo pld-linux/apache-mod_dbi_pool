@@ -18,6 +18,7 @@ BuildRequires:	apache-devel >= 2.0.40
 BuildRequires:	libdbi-devel >= 0.7.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	sed
 Requires(post,preun):	%{apxs}
 Requires:	apache >= 2.0.40
 Requires:	libdbi >= 0.7.2
@@ -42,7 +43,7 @@ SQLite.
 Summary:	Header files for mod_dbi_pool API
 Summary(pl):	Pliki nag³ówkowe dla API mod_dbi_pool
 Group:		Development/Libraries
-Requires:	apache-devel = %{version}-%{release} >= 2.0.40
+Requires:	apache-devel >= 2.0.40
 
 %description devel
 Header files for mod_dbi_pool API.
@@ -58,6 +59,9 @@ Pliki nag³ówkowe dla API mod_dbi_pool.
 %{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
+
+sed -i -e 's/test_paths="\/usr\/lib \/usr\/local\/lib"/test_paths="\/usr\/lib64 \/usr\/lib \/usr\/local\/lib"/g' configure
+
 %configure \
         --with-apxs=%{apxs}
 %{__make}
