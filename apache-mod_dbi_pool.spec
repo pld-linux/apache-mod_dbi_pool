@@ -19,7 +19,6 @@ BuildRequires:	libdbi-devel >= 0.7.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	sed
-Requires(post,preun):	%{apxs}
 Requires:	apache >= 2.0.40
 Requires:	libdbi >= 0.7.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
