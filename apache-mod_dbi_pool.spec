@@ -75,7 +75,7 @@ install src/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
 install include/mod_dbi_pool.h $RPM_BUILD_ROOT%{_includedir}/apache
 cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_%{mod_name}.conf
-LoadModule %{mod_name}_module        modules/%{mod_name}.so
+LoadModule %{mod_name}_module        modules/mod_%{mod_name}.so
 # vim: filetype=apache ts=4 sw=4 et
 EOF
 
