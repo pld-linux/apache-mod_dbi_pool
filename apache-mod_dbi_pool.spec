@@ -1,4 +1,3 @@
-
 %define		mod_name	dbi_pool
 %define 	apxs		/usr/sbin/apxs
 Summary:	mod_dbi_pool - Pool Database connections between modules and requests
@@ -12,14 +11,14 @@ Source0:	http://www.outoforder.cc/downloads/mod_dbi_pool/mod_%{mod_name}-%{versi
 # Source0-md5:	7fd42e90358b370eafdddf1f7252a65e
 URL:		http://www.outoforder.cc/projects/apache/mod_dbi_pool/
 BuildRequires:	%{apxs}
+BuildRequires:	apache-devel >= 2.0.40
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	apache-devel >= 2.0.40
 BuildRequires:	libdbi-devel >= 0.7.2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-BuildRequires:	sed
-Requires:	apache >= 2.0.40
+BuildRequires:	sed >= 4.0
+Requires:	apache(modules-api) = %apache_modules_api
 Requires:	libdbi >= 0.7.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,10 +73,8 @@ install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_includedir}/apache,%{_sysconfdir}/ht
 install src/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
 install include/mod_dbi_pool.h $RPM_BUILD_ROOT%{_includedir}/apache
-cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_%{mod_name}.conf
-LoadModule %{mod_name}_module        modules/mod_%{mod_name}.so
-# vim: filetype=apache ts=4 sw=4 et
-EOF
+echo 'LoadModule %{mod_name}_module modules/mod_%{mod_name}.so' > \
+	$RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/75_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,7 +93,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
 
 %files devel
