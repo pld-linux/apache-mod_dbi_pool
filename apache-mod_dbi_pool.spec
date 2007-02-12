@@ -1,7 +1,7 @@
 %define		mod_name	dbi_pool
 %define 	apxs		/usr/sbin/apxs
 Summary:	mod_dbi_pool - Pool Database connections between modules and requests
-Summary(pl):	mod_dbi_pool - po≥±czenia bazowanowe miÍdzy modu≥ami i ø±daniami
+Summary(pl.UTF-8):   mod_dbi_pool - po≈ÇƒÖczenia bazowanowe miƒôdzy modu≈Çami i ≈ºƒÖdaniami
 Name:		apache-mod_%{mod_name}
 Version:	0.4.0
 Release:	1
@@ -32,24 +32,24 @@ Apache Modules. Using libdbi it allows other modules to have a dynamic
 pool of database connections for many common SQL Servers, including
 mSQL, MySQL, PostgreSQL, Oracle and SQLite.
 
-%description -l pl
-mod_dbi_pool dostarcza us≥ugi utrzymywania puli po≥±czeÒ z baz± danych
-dla innych modu≥Ûw Apache'a. Poprzez uøycie libdbi umoøliwia innym
-modu≥om posiadanie dynamicznej puli po≥±czeÒ z baz± danych dla wielu
-popularnych serwerÛw SQL, w tym mSQL, MySQL, PostgreSQL, Oracle i
+%description -l pl.UTF-8
+mod_dbi_pool dostarcza us≈Çugi utrzymywania puli po≈ÇƒÖcze≈Ñ z bazƒÖ danych
+dla innych modu≈Ç√≥w Apache'a. Poprzez u≈ºycie libdbi umo≈ºliwia innym
+modu≈Çom posiadanie dynamicznej puli po≈ÇƒÖcze≈Ñ z bazƒÖ danych dla wielu
+popularnych serwer√≥w SQL, w tym mSQL, MySQL, PostgreSQL, Oracle i
 SQLite.
 
 %package devel
 Summary:	Header files for mod_dbi_pool API
-Summary(pl):	Pliki nag≥Ûwkowe dla API mod_dbi_pool
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe dla API mod_dbi_pool
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0.40
 
 %description devel
 Header files for mod_dbi_pool API.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe dla API mod_dbi_pool.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe dla API mod_dbi_pool.
 
 %prep
 %setup -q -n mod_%{mod_name}-%{version}
