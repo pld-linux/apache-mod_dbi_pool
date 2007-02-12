@@ -1,7 +1,7 @@
 %define		mod_name	dbi_pool
 %define 	apxs		/usr/sbin/apxs
 Summary:	mod_dbi_pool - Pool Database connections between modules and requests
-Summary(pl.UTF-8):   mod_dbi_pool - połączenia bazowanowe między modułami i żądaniami
+Summary(pl.UTF-8):	mod_dbi_pool - połączenia bazowanowe między modułami i żądaniami
 Name:		apache-mod_%{mod_name}
 Version:	0.4.0
 Release:	1
@@ -41,7 +41,7 @@ SQLite.
 
 %package devel
 Summary:	Header files for mod_dbi_pool API
-Summary(pl.UTF-8):   Pliki nagłówkowe dla API mod_dbi_pool
+Summary(pl.UTF-8):	Pliki nagłówkowe dla API mod_dbi_pool
 Group:		Development/Libraries
 Requires:	apache-devel >= 2.0.40
 
