@@ -10,7 +10,7 @@ Group:		Networking/Daemons
 Source0:	http://www.outoforder.cc/downloads/mod_dbi_pool/mod_%{mod_name}-%{version}.tar.bz2
 # Source0-md5:	7fd42e90358b370eafdddf1f7252a65e
 URL:		http://www.outoforder.cc/projects/apache/mod_dbi_pool/
-BuildRequires:	%{apxs}
+BuildRequires:	apache-apxs >= 2.0
 BuildRequires:	apache-devel >= 2.0.40
 BuildRequires:	autoconf
 BuildRequires:	automake
