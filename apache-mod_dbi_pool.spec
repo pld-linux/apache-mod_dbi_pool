@@ -6,7 +6,7 @@ Name:		apache-mod_%{mod_name}
 Version:	0.4.0
 Release:	1
 License:	GPL
-Group:		Networking/Daemons
+Group:		Networking/Daemons/HTTP
 Source0:	http://www.outoforder.cc/downloads/mod_dbi_pool/mod_%{mod_name}-%{version}.tar.bz2
 # Source0-md5:	7fd42e90358b370eafdddf1f7252a65e
 URL:		http://www.outoforder.cc/projects/apache/mod_dbi_pool/
